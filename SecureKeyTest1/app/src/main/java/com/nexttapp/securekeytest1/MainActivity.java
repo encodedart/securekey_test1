@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseWords() {
-        Log.e("A","" + dic.size());
         outputWords.setText("");
         String ip = inputTxt.getText().toString();
         if (ip == null || ip.isEmpty()) {
@@ -97,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0;i<ip.length()-1;i++) {
             String word = Character.toString(ip.charAt(i));
             for (int j=i+1;j<ip.length();j++) {
-                word += Character.toString(ip.charAt(j));
+                String ch = Character.toString(ip.charAt(j));
+                if (ch.equals(" ")) continue;
+                word += ch;
                 Log.d("Word: ", word);
                 if (!wordsFound.containsKey(word)) {
                     wordsFound.put(word, true);
